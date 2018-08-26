@@ -1,5 +1,4 @@
 package entities;
-import org.springframework.data.annotation.Id;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
@@ -7,7 +6,6 @@ import java.util.Date;
 
 public class Appointment {
 
-    @Id
     private String id;
     private Date date;
     private Patient patient;

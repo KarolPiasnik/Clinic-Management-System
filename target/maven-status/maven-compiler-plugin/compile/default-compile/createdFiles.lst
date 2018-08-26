@@ -1,7 +1,6 @@
 enums\ContractTypeEnum.class
 entities\ServiceEntity.class
 entities\PatientHistory.class
-repositories\PatientRepository.class
 gui\WorkersAdminPanel.class
 enums\PatientStatusEnum.class
 gui\UserPanel.class

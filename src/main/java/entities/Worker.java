@@ -5,11 +5,9 @@ import com.mongodb.DBObject;
 import enums.ContractTypeEnum;
 import enums.WorkerFunctionEnum;
 import enums.WorkerStatusEnum;
-import org.springframework.data.annotation.Id;
 
 public class Worker {
 
-        @Id
         String id;
 
         public String getId() {

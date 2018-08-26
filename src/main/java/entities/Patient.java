@@ -4,11 +4,9 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import enums.PatientStatusEnum;
 import enums.SexEnum;
-import org.springframework.data.annotation.Id;
 
 public class Patient {
 
-    @Id
     String id;
     private String name;
     private String surname;
