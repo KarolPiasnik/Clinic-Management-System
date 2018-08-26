@@ -4,9 +4,25 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import enums.PatientStatusEnum;
 import enums.SexEnum;
+import org.springframework.data.annotation.Id;
 
-public class PatientEntity {
+public class Patient {
+
+    @Id
     String id;
+    private String name;
+    private String surname;
+    private String pesel;
+    private Integer age;
+    private SexEnum sex;
+
+    public Patient(String name, String surname, String pesel, Integer age, SexEnum sex){
+        this.name = name;
+        this.surname = surname;
+        this.sex = sex;
+        this.pesel = pesel;
+        this.age = age;
+    }
 
     public String getId() {
         return id;
@@ -47,11 +63,7 @@ public class PatientEntity {
     public void setAge(Integer age) {
         this.age = age;
     }
-    private String name;
-    private String surname;
-    private String pesel;
-    private Integer age;
-    private SexEnum sex;
+
 
     public SexEnum getSex() {
         return sex;

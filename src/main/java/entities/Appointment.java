@@ -1,17 +1,20 @@
 package entities;
-
+import org.springframework.data.annotation.Id;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 import java.util.Date;
 
-public class AppointmentEntity {
+public class Appointment {
+
+    @Id
+    private String id;
     private Date date;
-    private PatientEntity patient;
-    private WorkerEntity medicalWorker;
+    private Patient patient;
+    private Worker medicalWorker;
     private int roomNumber;
 
-    public AppointmentEntity(Date date, WorkerEntity medicalWorker, PatientEntity patient, int roomNumber){
+    public Appointment(Date date, Worker medicalWorker, Patient patient, int roomNumber){
         this.date = date;
         this.medicalWorker = medicalWorker;
         this.patient = patient;
@@ -26,19 +29,19 @@ public class AppointmentEntity {
         this.date = date;
     }
 
-    public PatientEntity getPatient() {
+    public Patient getPatient() {
         return patient;
     }
 
-    public void setPatient(PatientEntity patient) {
+    public void setPatient(Patient patient) {
         this.patient = patient;
     }
 
-    public WorkerEntity getMedicalWorker() {
+    public Worker getMedicalWorker() {
         return medicalWorker;
     }
 
-    public void setMedicalWorker(WorkerEntity medicalWorker) {
+    public void setMedicalWorker(Worker medicalWorker) {
         this.medicalWorker = medicalWorker;
     }
 
