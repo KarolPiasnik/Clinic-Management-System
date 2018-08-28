@@ -7,7 +7,7 @@ import enums.SexEnum;
 
 public class Patient {
 
-    String id;
+    Object id;
     private String name;
     private String surname;
     private String pesel;
@@ -15,6 +15,7 @@ public class Patient {
     private SexEnum sex;
 
     public Patient(String name, String surname, String pesel, Integer age, SexEnum sex){
+        this.id = null;
         this.name = name;
         this.surname = surname;
         this.sex = sex;
@@ -22,11 +23,20 @@ public class Patient {
         this.age = age;
     }
 
-    public String getId() {
+    public Patient(DBObject patient){
+        this.id = patient.get("id");
+        this.name = patient.get("name").toString();
+        this.surname = patient.get("surname").toString();
+        this.sex = SexEnum.values()[(Integer) patient.get("sex")];
+        this.pesel = patient.get("pesel").toString();
+        this.age = (Integer) patient.get("age");
+    }
+
+    public Object getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Object id) {
         this.id = id;
     }
 
@@ -74,11 +84,18 @@ public class Patient {
 
 
     public DBObject toDBObject() {
-        return new BasicDBObject("name", this.getName())
+        BasicDBObject dbobject =  new BasicDBObject("name", this.getName())
                 .append("surname", this.getSurname())
                 .append("pesel", this.getPesel())
                 .append("age", this.getAge())
-                .append("sex", this.getSex());
+                .append("sex", this.getSex().ordinal());
+        if(id != null){
+            dbobject.append("_id",id);
+        }
+
+        return  dbobject;
     }
+
+
 
 }

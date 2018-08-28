@@ -1,6 +1,6 @@
 package gui;
 
-import BaseGui.BaseAdminPanel;
+import BaseGui.BaseAdminPanelImpl;
 
-public class WorkersAdminPanel extends BaseAdminPanel {
+public class WorkersAdminPanel extends BaseAdminPanelImpl {
 }

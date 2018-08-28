@@ -1,11 +1,13 @@
 import com.mongodb.*;
+import entities.Patient;
+import enums.SexEnum;
 import gui.PatientAdminPanel;
+
 
 import javax.swing.*;
 import java.net.UnknownHostException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-
 
 
 public class Application {
@@ -19,14 +21,23 @@ public class Application {
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
-        DB database = mongoClient.getDB("Examples");
-        DBCollection collection = database.getCollection("people");
+        DB database = mongoClient.getDB("ClientManagementSystem");
+        DBCollection collection = database.getCollection("patients");
+
+        collection.insert(new Patient("Alice", "Kowalski", "11111111111", 21, SexEnum.FEMALE).toDBObject());
+        collection.insert(new Patient("Alice1", "Kowalski4", "11111111111", 21, SexEnum.MALE).toDBObject());
+        collection.insert(new Patient("Alice2", "Kowalski3", "11111111111", 21, SexEnum.FEMALE).toDBObject());
+        collection.insert(new Patient("Alice3", "Kowalski2", "11111111111", 21, SexEnum.MALE).toDBObject());
+        collection.insert(new Patient("Alice4", "Kowalski1", "11111111111", 21, SexEnum.FEMALE).toDBObject());
 
 
-        DBObject query = new BasicDBObject("_id", "jo");
-        DBCursor cursor = collection.find(query);
-        System.out.println(cursor.one().get("name"));
-
+        DBCursor cursor = collection.find();
+        List<Patient> patients = new ArrayList<Patient>();
+        Patient patient = null;
+        for(DBObject dbPatient : cursor) {
+            patient = new Patient(dbPatient);
+            patients.add(patient);
+        }
 
 
 
@@ -35,7 +46,9 @@ public class Application {
         frame.setContentPane(app.getPanelMain());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
         frame.pack();
+
+        app.updatePatients(patients);
+        app.updateTable();
     }
 }

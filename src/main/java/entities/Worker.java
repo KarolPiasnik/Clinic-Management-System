@@ -66,13 +66,6 @@ public class Worker {
                 this.function = function;
         }
 
-        public ContractTypeEnum getContractType() {
-                return contractType;
-        }
-
-        public void setContractType(ContractTypeEnum contractType) {
-                this.contractType = contractType;
-        }
 
         public Double getSalary() {
                 return salary;
@@ -112,7 +105,6 @@ public class Worker {
         private String pesel;
         private String job;
         private WorkerFunctionEnum function;
-        private ContractTypeEnum contractType;
         private Double salary;
         private String scientificTitle;
         private Integer age;

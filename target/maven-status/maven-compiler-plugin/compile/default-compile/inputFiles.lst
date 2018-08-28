@@ -1,6 +1,7 @@
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\Application.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\gui\MainApp.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\enums\WorkerStatusEnum.java
+C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\BaseGui\BaseAdminPanelImpl.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\enums\SexEnum.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\gui\WorkersAdminPanel.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\entities\Patient.java
@@ -8,8 +9,8 @@ C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\gui\PatientAdmi
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\enums\PatientStatusEnum.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\enums\WorkerFunctionEnum.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\entities\DeviceEntity.java
-C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\BaseGui\BaseAdminPanel.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\gui\UserPanel.java
+C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\BaseGui\AdminPanel.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\enums\ContractTypeEnum.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\entities\RoomEntity.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\entities\Appointment.java
