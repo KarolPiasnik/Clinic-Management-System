@@ -14,6 +14,10 @@ public class Patient {
     private Integer age;
     private SexEnum sex;
 
+    public Patient(){
+
+    }
+
     public Patient(String name, String surname, String pesel, Integer age, SexEnum sex){
         this.id = null;
         this.name = name;
@@ -24,7 +28,7 @@ public class Patient {
     }
 
     public Patient(DBObject patient){
-        this.id = patient.get("id");
+        this.id = patient.get("_id");
         this.name = patient.get("name").toString();
         this.surname = patient.get("surname").toString();
         this.sex = SexEnum.values()[(Integer) patient.get("sex")];

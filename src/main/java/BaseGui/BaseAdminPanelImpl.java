@@ -3,6 +3,8 @@ package BaseGui;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BaseAdminPanelImpl implements AdminPanel{
 
@@ -20,7 +22,7 @@ public class BaseAdminPanelImpl implements AdminPanel{
 
     }
 
-    public void editSelected() {
+    public void saveChanges() {
         throw new NotImplementedException();
 
     }
@@ -38,14 +40,18 @@ public class BaseAdminPanelImpl implements AdminPanel{
         return panelMain;
     }
 
+    public void deleteAll() {
+        throw new NotImplementedException();
+    }
+
     protected JPanel panelMain;
     protected JPanel buttonsPanel;
     protected JPanel listPanel;
 
     protected JButton searchButton;
     protected JButton addButton;
-    protected JButton deleteButton;
-    protected JButton editButton;
+    protected JButton deleteSelectedButton;
+    protected JButton saveChangesButton;
     protected JButton deleteAllButton;
     protected JButton summaryButton;
     protected JTable resultTable;
@@ -60,15 +66,15 @@ public class BaseAdminPanelImpl implements AdminPanel{
 
         searchButton = new JButton("Szukaj");
         addButton = new JButton("Dodaj");
-        deleteButton = new JButton("Usuń");
-        editButton = new JButton("Edytuj");
+        deleteSelectedButton = new JButton("Usuń zaznaczone");
+        saveChangesButton = new JButton("Zapisz zmiany");
         deleteAllButton = new JButton("Usuń wszystko");
         summaryButton = new JButton("Podsumowanie");
 
         buttonsPanel.add(searchButton);
         buttonsPanel.add(addButton);
-        buttonsPanel.add(deleteButton);
-        buttonsPanel.add(editButton);
+        buttonsPanel.add(deleteSelectedButton);
+        buttonsPanel.add(saveChangesButton);
         buttonsPanel.add(deleteAllButton);
         buttonsPanel.add(summaryButton);
 
@@ -76,9 +82,47 @@ public class BaseAdminPanelImpl implements AdminPanel{
         panelMain.add(buttonsPanel);
         panelMain.add(listPanel);
 
+        deleteSelectedButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                deleteSelected();
+            }
+        });
+
+        addButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                addNew();
+            }
+        });
+
+        deleteAllButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                deleteAll();
+            }
+        });
+
+        summaryButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                showSummary();
+            }
+        });
+
+        searchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                search();
+            }
+        });
+
+        saveChangesButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                saveChanges();
+            }
+        });
+
         panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.PAGE_AXIS));
 
     }
+
+
 
 
 }

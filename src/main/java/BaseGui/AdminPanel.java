@@ -6,8 +6,9 @@ public interface AdminPanel {
     void updateTable();
     void deleteSelected();
     void addNew();
-    void editSelected();
+    void saveChanges();
     void showSummary();
     void search();
+    void deleteAll();
     JPanel getPanelMain();
 }
