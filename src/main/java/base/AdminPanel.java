@@ -1,4 +1,4 @@
-package BaseGui;
+package base;
 
 import javax.swing.*;
 

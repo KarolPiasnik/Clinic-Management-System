@@ -1,4 +1,4 @@
-package BaseGui;
+package base;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 

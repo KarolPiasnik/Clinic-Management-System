@@ -32,7 +32,7 @@ public class Application {
 //        });
 //
         app.openDatabaseConnection();
-        app.fetchPatients();
+        app.fetchPersons();
         app.updateTable();
         patientsFrame.pack();
     }

@@ -1,3 +1,4 @@
+gui\PersonAdminPanel$1.class
 entities\PatientHistory.class
 BaseGui\BaseAdminPanelImpl$2.class
 BaseGui\BaseAddPopup.class
@@ -6,12 +7,12 @@ gui\MainApp$1.class
 entities\Appointment.class
 entities\Patient.class
 enums\WorkerFunctionEnum.class
+gui\PersonAdminPanel.class
 BaseGui\BaseAdminPanelImpl$5.class
 entities\RoomEntity.class
-gui\PatientAdminPanel$1.class
 Application.class
+entities\Person.class
 enums\SexEnum.class
-gui\PatientAdminPanel$2.class
 BaseGui\AdminPanel.class
 enums\ContractTypeEnum.class
 entities\ServiceEntity.class
@@ -20,6 +21,7 @@ gui\WorkersAdminPanel.class
 enums\PatientStatusEnum.class
 gui\UserPanel.class
 enums\WorkerStatusEnum.class
+gui\PersonAdminPanel$2.class
 BaseGui\BaseAdminPanelImpl$3.class
 BaseGui\BaseAdminPanelImpl.class
 BaseGui\BaseAdminPanelImpl$4.class

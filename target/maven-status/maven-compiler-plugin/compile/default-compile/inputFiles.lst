@@ -15,7 +15,9 @@ C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\gui\UserPanel.j
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\BaseGui\AdminPanel.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\enums\ContractTypeEnum.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\entities\RoomEntity.java
+C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\entities\Person.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\entities\Appointment.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\entities\PatientHistory.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\entities\Worker.java
 C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\entities\ServiceEntity.java
+C:\Users\Karol\IdeaProjects\ClinicManagementSystem\src\main\java\gui\PersonAdminPanel.java
