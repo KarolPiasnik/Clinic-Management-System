@@ -88,11 +88,17 @@ public class Patient {
 
 
     public DBObject toDBObject() {
-        BasicDBObject dbobject =  new BasicDBObject("name", this.getName())
-                .append("surname", this.getSurname())
-                .append("pesel", this.getPesel())
-                .append("age", this.getAge())
-                .append("sex", this.getSex().ordinal());
+        BasicDBObject dbobject =  new BasicDBObject();
+        if(this.getName()!=null)
+            dbobject.append("name", this.getName());
+        if(this.getSurname()!=null)
+            dbobject.append("surname", this.getSurname());
+        if(this.getPesel()!=null)
+            dbobject.append("pesel", this.getPesel());
+        if(this.getAge()!=null)
+            dbobject.append("age", this.getAge());
+        if(this.getSex()!=null)
+            dbobject.append("sex", this.getSex().ordinal());
         if(id != null){
             dbobject.append("_id",id);
         }

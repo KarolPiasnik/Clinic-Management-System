@@ -47,6 +47,7 @@ public class BaseAdminPanelImpl implements AdminPanel{
     protected JPanel panelMain;
     protected JPanel buttonsPanel;
     protected JPanel listPanel;
+    protected JPanel searchPanel;
 
     protected JButton searchButton;
     protected JButton addButton;
@@ -56,6 +57,12 @@ public class BaseAdminPanelImpl implements AdminPanel{
     protected JButton summaryButton;
     protected JTable resultTable;
 
+    protected JTextField nameField;
+    protected JTextField surnameField;
+    protected JTextField ageField;
+    protected JTextField peselField;
+
+
     public BaseAdminPanelImpl() {
 
         resultTable = new JTable();
@@ -63,6 +70,8 @@ public class BaseAdminPanelImpl implements AdminPanel{
         panelMain = new JPanel();
         listPanel = new JPanel();
         buttonsPanel = new JPanel();
+        searchPanel = new JPanel();
+
 
         searchButton = new JButton("Szukaj");
         addButton = new JButton("Dodaj");
@@ -71,15 +80,32 @@ public class BaseAdminPanelImpl implements AdminPanel{
         deleteAllButton = new JButton("Usuń wszystko");
         summaryButton = new JButton("Podsumowanie");
 
-        buttonsPanel.add(searchButton);
+
+
+        searchPanel.add(searchButton);
         buttonsPanel.add(addButton);
         buttonsPanel.add(deleteSelectedButton);
         buttonsPanel.add(saveChangesButton);
         buttonsPanel.add(deleteAllButton);
         buttonsPanel.add(summaryButton);
 
+        nameField = new JTextField(5);
+        surnameField = new JTextField( 5);
+        ageField = new JTextField( 5);
+        peselField = new JTextField( 5);
+
+        searchPanel.add(new JLabel("Imię"));
+        searchPanel.add(nameField);
+        searchPanel.add(new JLabel("Nazwisko"));
+        searchPanel.add(surnameField);
+        searchPanel.add(new JLabel("Wiek"));
+        searchPanel.add(ageField);
+        searchPanel.add(new JLabel("PESEL"));
+        searchPanel.add(peselField);
+
         listPanel.add(resultTable);
         panelMain.add(buttonsPanel);
+        panelMain.add(searchPanel);
         panelMain.add(listPanel);
 
         deleteSelectedButton.addActionListener(new ActionListener() {
@@ -117,8 +143,8 @@ public class BaseAdminPanelImpl implements AdminPanel{
                 saveChanges();
             }
         });
-
         panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.PAGE_AXIS));
+
 
     }
 

@@ -34,5 +34,6 @@ public class Application {
         app.openDatabaseConnection();
         app.fetchPatients();
         app.updateTable();
+        patientsFrame.pack();
     }
 }

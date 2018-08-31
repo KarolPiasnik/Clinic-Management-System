@@ -9,14 +9,10 @@ import libs.MyValidationLibrary;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import javax.xml.bind.ValidationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class PatientAdminPanel extends BaseAdminPanelImpl {
     private ArrayList<Patient> patients = new ArrayList<Patient>();
@@ -56,8 +52,8 @@ public class PatientAdminPanel extends BaseAdminPanelImpl {
         for(int index : resultTable.getSelectedRows()){
             collection.remove((patients.get(index)).toDBObject());
         }
-        fetchPatients();
-        updateTable();
+        refresh();
+
 
     }
 
@@ -66,8 +62,8 @@ public class PatientAdminPanel extends BaseAdminPanelImpl {
         for(Patient patient : patients){
             collection.remove(patient.toDBObject());
         }
-        fetchPatients();
-        updateTable();
+        refresh();
+
     }
 
     @Override
@@ -97,8 +93,8 @@ public class PatientAdminPanel extends BaseAdminPanelImpl {
             collection.save(patient.toDBObject());
             System.out.print(patient.getId());
         }
-        fetchPatients();
-        updateTable();
+        refresh();
+
     }
 
     public void closeDatabaseConnection(){
@@ -155,22 +151,26 @@ public class PatientAdminPanel extends BaseAdminPanelImpl {
 
 
             int result = JOptionPane.showConfirmDialog(null, myPanel,
-                    "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION);
+                    "Wpisz dane nowego pacjenta", JOptionPane.OK_CANCEL_OPTION);
 
             if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.CLOSED_OPTION){
                 ended = true;
             }
             if (result == JOptionPane.OK_OPTION) {
                 if (MyValidationLibrary.isValidPesel(peselField.getText()) && MyValidationLibrary.isValidAge(ageField.getText())){
-                    Patient patient;
+                    Patient patient = new Patient();
+                    patient.setName(nameField.getText());
+                    patient.setSurname(surnameField.getText());
+                    patient.setPesel(peselField.getText());
+                    patient.setAge(Integer.parseInt(ageField.getText()));
+
                     if (femaleButton.isSelected()) {
-                        patient = new Patient(nameField.getText(), surnameField.getText(), peselField.getText(), Integer.parseInt(ageField.getText()), SexEnum.FEMALE);
+                        patient.setSex(SexEnum.FEMALE);
                     } else {
-                        patient = new Patient(nameField.getText(), surnameField.getText(), peselField.getText(), Integer.parseInt(ageField.getText()), SexEnum.MALE);
+                        patient.setSex(SexEnum.MALE);
                     }
                     collection.insert(patient.toDBObject());
-                    fetchPatients();
-                    updateTable();
+                    refresh();
                     ended = true;
                 }
                 else {
@@ -179,6 +179,44 @@ public class PatientAdminPanel extends BaseAdminPanelImpl {
             }
 
         }
+    }
+
+    public void refresh(){
+        fetchPatients();
+        updateTable();
+    }
+
+    @Override
+    public void search(){
+        Patient modelPatient = new Patient();
+        if(nameField.getText().length() != 0){
+            modelPatient.setName(nameField.getText());
+        }
+        if(surnameField.getText().length() != 0){
+            modelPatient.setSurname(surnameField.getText());
+        }
+        if(ageField.getText().length() != 0 && MyValidationLibrary.isValidAge(ageField.getText())){
+            modelPatient.setAge(Integer.parseInt(ageField.getText()));
+        }
+        else {
+            ageField.setText("");
+
+        }
+        if(peselField.getText().length() != 0 && MyValidationLibrary.isValidPesel(peselField.getText())){
+            modelPatient.setPesel(peselField.getText());
+        }
+        else {
+            peselField.setText("");
+        }
+
+        patients = new ArrayList<Patient>();
+        Patient patient;
+        DBCursor foundPatients = collection.find(modelPatient.toDBObject());
+        for(DBObject dbPatient : foundPatients) {
+            patient = new Patient(dbPatient);
+            patients.add(patient);
+        }
+        updateTable();
     }
 
 }
