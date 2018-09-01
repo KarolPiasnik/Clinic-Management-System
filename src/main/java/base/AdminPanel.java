@@ -17,5 +17,11 @@ public interface AdminPanel {
 
     void deleteAll();
 
+    void refresh();
+
+    void openDatabaseConnection();
+
+    void fetch();
+
     JPanel getPanelMain();
 }

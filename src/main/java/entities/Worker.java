@@ -1,17 +1,11 @@
 package entities;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import enums.ContractTypeEnum;
 import enums.WorkerFunctionEnum;
-import enums.WorkerStatusEnum;
 
 public class Worker extends Person {
 
-    private WorkerStatusEnum status;
-    private String name;
-    private String surname;
-    private String pesel;
+
     private String job;
     private WorkerFunctionEnum function;
     private Double salary;
@@ -60,24 +54,16 @@ public class Worker extends Person {
 
 
 
-    public DBObject toDBObject() {
-        BasicDBObject dbobject = new BasicDBObject();
+    public BasicDBObject toDBObject() {
+        BasicDBObject dbobject = super.toDBObject();
 
-        if (this.getName() != null)
-            dbobject.append("name", this.getName());
-        if (this.getName() != null)
-            dbobject.append("surname", this.getSurname());
-        if (this.getName() != null)
-            dbobject.append("pesel", this.getPesel());
-        if (this.getName() != null)
+        if (this.getJob() != null)
             dbobject.append("job", this.getJob());
-        if (this.getName() != null)
+        if (this.getSalary() != null)
             dbobject.append("salary", this.getSalary());
-        if (this.getName() != null)
-            dbobject.append("title", this.getScientificTitle());
-        if (this.getName() != null)
-            dbobject.append("age", this.getAge());
-        if (this.getName() != null)
+        if (this.getScientificTitle() != null)
+            dbobject.append("scientificTitle", this.getScientificTitle());
+        if (this.getFunction() != null)
             dbobject.append("function", this.getFunction());
 
         return dbobject;

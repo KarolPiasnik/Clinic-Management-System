@@ -84,7 +84,7 @@ public class Person {
     }
 
 
-    public DBObject toDBObject() {
+    public BasicDBObject toDBObject() {
         BasicDBObject dbobject = new BasicDBObject();
         if (this.getName() != null)
             dbobject.append("name", this.getName());

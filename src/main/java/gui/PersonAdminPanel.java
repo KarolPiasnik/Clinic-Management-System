@@ -17,17 +17,17 @@ import java.util.ArrayList;
 public class PersonAdminPanel extends BaseAdminPanelImpl {
     private ArrayList<Person> persons = new ArrayList<Person>();
     private String[] columns = {"Imię", "Nazwisko", "Wiek", "Pesel", "Płeć"};
-    DB database;
-    MongoClient mongoClient;
+
     DBCollection collection;
 
     public PersonAdminPanel() {
         super();
         DefaultTableModel model = new DefaultTableModel(columns, 0);
         resultTable.setModel(model);
+        collection = dataBase.getPersons();
     }
 
-    public void fetchPersons() {
+    public void fetch() {
         persons = new ArrayList<Person>();
         DBCursor cursor = collection.find();
         Person person = null;
@@ -94,21 +94,6 @@ public class PersonAdminPanel extends BaseAdminPanelImpl {
         }
         refresh();
 
-    }
-
-    public void closeDatabaseConnection() {
-        mongoClient.close();
-    }
-
-    public void openDatabaseConnection() {
-        MongoClient mongoClient = null;
-        try {
-            mongoClient = new MongoClient();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        database = mongoClient.getDB("ClientManagementSystem");
-        collection = database.getCollection("persons");
     }
 
     @Override
@@ -180,7 +165,7 @@ public class PersonAdminPanel extends BaseAdminPanelImpl {
     }
 
     public void refresh() {
-        fetchPersons();
+        fetch();
         updateTable();
     }
 

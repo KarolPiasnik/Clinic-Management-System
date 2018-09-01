@@ -1,5 +1,6 @@
 package base;
 
+import libs.DataBase;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.swing.*;
@@ -7,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BaseAdminPanelImpl implements AdminPanel {
+    protected  DataBase dataBase = new DataBase();
 
     public void updateTable() {
         throw new NotImplementedException();
@@ -41,6 +43,18 @@ public class BaseAdminPanelImpl implements AdminPanel {
     }
 
     public void deleteAll() {
+        throw new NotImplementedException();
+    }
+
+    public void refresh(){
+        throw new NotImplementedException();
+    };
+
+    public void openDatabaseConnection(){
+        throw new NotImplementedException();
+    }
+
+    public void fetch(){
         throw new NotImplementedException();
     }
 
