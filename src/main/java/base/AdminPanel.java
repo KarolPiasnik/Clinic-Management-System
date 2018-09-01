@@ -19,8 +19,6 @@ public interface AdminPanel {
 
     void refresh();
 
-    void openDatabaseConnection();
-
     void fetch();
 
     JPanel getPanelMain();

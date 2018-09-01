@@ -7,11 +7,11 @@ import enums.SexEnum;
 public class Person {
 
     Object id;
-    private String name;
-    private String surname;
-    private String pesel;
-    private Integer age;
-    private SexEnum sex;
+    protected String name;
+    protected String surname;
+    protected String pesel;
+    protected Integer age;
+    protected SexEnum sex;
 
     public Person() {
 

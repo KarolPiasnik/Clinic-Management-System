@@ -1,24 +1,18 @@
 package entities;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import enums.SexEnum;
 import enums.WorkerFunctionEnum;
+
+import javax.print.attribute.DocAttributeSet;
 
 public class Worker extends Person {
 
 
-    private String job;
     private WorkerFunctionEnum function;
     private Double salary;
     private String scientificTitle;
-    private Integer age;
-
-    public String getJob() {
-        return job;
-    }
-
-    public void setJob(String job) {
-        this.job = job;
-    }
 
     public WorkerFunctionEnum getFunction() {
         return function;
@@ -44,27 +38,29 @@ public class Worker extends Person {
         this.scientificTitle = scientificTitle;
     }
 
-    public Integer getAge() {
-        return age;
+    public Worker() {}
+
+    public Worker(DBObject worker){
+        super(worker);
+        System.out.println(getName());
+        if(worker.get("function") != null)
+            this.function = WorkerFunctionEnum.values()[(Integer) worker.get("function")];
+        if(worker.get("scientificTitle") != null)
+            this.scientificTitle = worker.get("scientificTitle").toString();
+        if(worker.get("salary") != null)
+            this.salary = Double.parseDouble(worker.get("salary").toString());
     }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-
 
     public BasicDBObject toDBObject() {
         BasicDBObject dbobject = super.toDBObject();
+        System.out.println(dbobject.get("name"));
 
-        if (this.getJob() != null)
-            dbobject.append("job", this.getJob());
         if (this.getSalary() != null)
             dbobject.append("salary", this.getSalary());
         if (this.getScientificTitle() != null)
             dbobject.append("scientificTitle", this.getScientificTitle());
         if (this.getFunction() != null)
-            dbobject.append("function", this.getFunction());
+            dbobject.append("function", this.getFunction().ordinal());
 
         return dbobject;
 

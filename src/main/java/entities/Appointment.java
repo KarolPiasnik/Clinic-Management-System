@@ -60,8 +60,9 @@ public class Appointment {
         this.medicalWorker = medicalWorker;
     }
 
+    public Appointment(DBObject dbobject){}
 
-    public DBObject toDBObject() {
+    public BasicDBObject toDBObject() {
         BasicDBObject dbobject = new BasicDBObject();
         if (this.getName() != null)
             dbobject.append("name", this.getName());

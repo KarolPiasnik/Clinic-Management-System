@@ -50,9 +50,7 @@ public class BaseAdminPanelImpl implements AdminPanel {
         throw new NotImplementedException();
     };
 
-    public void openDatabaseConnection(){
-        throw new NotImplementedException();
-    }
+
 
     public void fetch(){
         throw new NotImplementedException();

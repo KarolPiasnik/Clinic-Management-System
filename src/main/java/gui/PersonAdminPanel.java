@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class PersonAdminPanel extends BaseAdminPanelImpl {
     private ArrayList<Person> persons = new ArrayList<Person>();
-    private String[] columns = {"Imię", "Nazwisko", "Wiek", "Pesel", "Płeć"};
+    protected String[] columns = {"Imię", "Nazwisko", "Wiek", "Pesel", "Płeć"};
 
     DBCollection collection;
 
