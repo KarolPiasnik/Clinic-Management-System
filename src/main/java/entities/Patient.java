@@ -5,6 +5,6 @@ import com.mongodb.DBObject;
 import enums.PatientStatusEnum;
 import enums.SexEnum;
 
-public class Patient extends Person{
+public class Patient extends Person {
 
 }

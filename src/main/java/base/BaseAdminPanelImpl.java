@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BaseAdminPanelImpl implements AdminPanel{
+public class BaseAdminPanelImpl implements AdminPanel {
 
     public void updateTable() {
         throw new NotImplementedException();
@@ -36,7 +36,7 @@ public class BaseAdminPanelImpl implements AdminPanel{
         throw new NotImplementedException();
     }
 
-    public JPanel getPanelMain()  {
+    public JPanel getPanelMain() {
         return panelMain;
     }
 
@@ -81,7 +81,6 @@ public class BaseAdminPanelImpl implements AdminPanel{
         summaryButton = new JButton("Podsumowanie");
 
 
-
         searchPanel.add(searchButton);
         buttonsPanel.add(addButton);
         buttonsPanel.add(deleteSelectedButton);
@@ -90,9 +89,9 @@ public class BaseAdminPanelImpl implements AdminPanel{
         buttonsPanel.add(summaryButton);
 
         nameField = new JTextField(5);
-        surnameField = new JTextField( 5);
-        ageField = new JTextField( 5);
-        peselField = new JTextField( 5);
+        surnameField = new JTextField(5);
+        ageField = new JTextField(5);
+        peselField = new JTextField(5);
 
         searchPanel.add(new JLabel("Imię"));
         searchPanel.add(nameField);
@@ -147,8 +146,6 @@ public class BaseAdminPanelImpl implements AdminPanel{
 
 
     }
-
-
 
 
 }

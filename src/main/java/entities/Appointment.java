@@ -1,4 +1,5 @@
 package entities;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
@@ -12,7 +13,7 @@ public class Appointment {
     private Worker medicalWorker;
     private int roomNumber;
 
-    public Appointment(Date date, Worker medicalWorker, Patient patient, int roomNumber){
+    public Appointment(Date date, Worker medicalWorker, Patient patient, int roomNumber) {
         this.date = date;
         this.medicalWorker = medicalWorker;
         this.patient = patient;
@@ -51,10 +52,10 @@ public class Appointment {
         this.roomNumber = roomNumber;
     }
 
-    public  DBObject toDBObject() {
+    public DBObject toDBObject() {
         return new BasicDBObject("date", this.getDate())
                 .append("doctor", this.getMedicalWorker().toDBObject())
                 .append("patient", this.getPatient().toDBObject())
-                        .append("room", this.getRoomNumber());
+                .append("room", this.getRoomNumber());
     }
 }

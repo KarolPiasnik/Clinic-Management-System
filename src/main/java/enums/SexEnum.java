@@ -2,7 +2,7 @@ package enums;
 
 import java.io.Serializable;
 
-public enum SexEnum implements Serializable{
+public enum SexEnum implements Serializable {
     FEMALE("Kobieta"),
     MALE("Mężczyzna");
 
@@ -13,7 +13,7 @@ public enum SexEnum implements Serializable{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return text;
     }
 }

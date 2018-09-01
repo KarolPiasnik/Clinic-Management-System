@@ -1,5 +1,5 @@
 package enums;
 
-public enum WorkerStatusEnum  {
+public enum WorkerStatusEnum {
 
 }

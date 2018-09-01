@@ -13,11 +13,11 @@ public class Person {
     private Integer age;
     private SexEnum sex;
 
-    public Person(){
+    public Person() {
 
     }
 
-    public Person(String name, String surname, String pesel, Integer age, SexEnum sex){
+    public Person(String name, String surname, String pesel, Integer age, SexEnum sex) {
         this.id = null;
         this.name = name;
         this.surname = surname;
@@ -26,7 +26,7 @@ public class Person {
         this.age = age;
     }
 
-    public Person(DBObject person){
+    public Person(DBObject person) {
         this.id = person.get("_id");
         this.name = person.get("name").toString();
         this.surname = person.get("surname").toString();
@@ -84,26 +84,24 @@ public class Person {
     }
 
 
-
     public DBObject toDBObject() {
-        BasicDBObject dbobject =  new BasicDBObject();
-        if(this.getName()!=null)
+        BasicDBObject dbobject = new BasicDBObject();
+        if (this.getName() != null)
             dbobject.append("name", this.getName());
-        if(this.getSurname()!=null)
+        if (this.getSurname() != null)
             dbobject.append("surname", this.getSurname());
-        if(this.getPesel()!=null)
+        if (this.getPesel() != null)
             dbobject.append("pesel", this.getPesel());
-        if(this.getAge()!=null)
+        if (this.getAge() != null)
             dbobject.append("age", this.getAge());
-        if(this.getSex()!=null)
+        if (this.getSex() != null)
             dbobject.append("sex", this.getSex().ordinal());
-        if(id != null){
-            dbobject.append("_id",id);
+        if (id != null) {
+            dbobject.append("_id", id);
         }
 
-        return  dbobject;
+        return dbobject;
     }
-
 
 
 }

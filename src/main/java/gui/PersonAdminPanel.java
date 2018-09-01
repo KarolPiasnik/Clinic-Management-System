@@ -16,22 +16,22 @@ import java.util.ArrayList;
 
 public class PersonAdminPanel extends BaseAdminPanelImpl {
     private ArrayList<Person> persons = new ArrayList<Person>();
-    private String[] columns =  {"Imię","Nazwisko","Wiek","Pesel","Płeć"};
+    private String[] columns = {"Imię", "Nazwisko", "Wiek", "Pesel", "Płeć"};
     DB database;
     MongoClient mongoClient;
     DBCollection collection;
 
-    public PersonAdminPanel(){
+    public PersonAdminPanel() {
         super();
         DefaultTableModel model = new DefaultTableModel(columns, 0);
         resultTable.setModel(model);
     }
 
-    public void fetchPersons(){
+    public void fetchPersons() {
         persons = new ArrayList<Person>();
         DBCursor cursor = collection.find();
         Person person = null;
-        for(DBObject dbPerson : cursor) {
+        for (DBObject dbPerson : cursor) {
             person = new Person(dbPerson);
             persons.add(person);
         }
@@ -40,16 +40,16 @@ public class PersonAdminPanel extends BaseAdminPanelImpl {
     @Override
     public void updateTable() {
         DefaultTableModel model = new DefaultTableModel(columns, 0);
-        for(Person person : persons){
+        for (Person person : persons) {
             model.addRow(new Object[]{person.getName(), person.getSurname(), person.getAge(), person.getPesel(), person.getSex()});
         }
         resultTable.setModel(model);
     }
 
     @Override
-    public void deleteSelected(){
+    public void deleteSelected() {
         ArrayList<String> idsToDelete = new ArrayList<String>();
-        for(int index : resultTable.getSelectedRows()){
+        for (int index : resultTable.getSelectedRows()) {
             collection.remove((persons.get(index)).toDBObject());
         }
         refresh();
@@ -58,8 +58,8 @@ public class PersonAdminPanel extends BaseAdminPanelImpl {
     }
 
     @Override
-    public void deleteAll(){
-        for(Person person : persons){
+    public void deleteAll() {
+        for (Person person : persons) {
             collection.remove(person.toDBObject());
         }
         refresh();
@@ -67,29 +67,28 @@ public class PersonAdminPanel extends BaseAdminPanelImpl {
     }
 
     @Override
-    public void saveChanges(){
+    public void saveChanges() {
         TableModel model = resultTable.getModel();
 
         Person[] personsToSave = new Person[persons.size()];
-        for(int i = 0; i < persons.size(); ++i){
+        for (int i = 0; i < persons.size(); ++i) {
             personsToSave[i] = persons.get(i);
         }
 
-        for(int i = 0; i < model.getRowCount(); ++i){
+        for (int i = 0; i < model.getRowCount(); ++i) {
             personsToSave[i] = new Person();
             personsToSave[i].setId(this.persons.get(i).getId());
             personsToSave[i].setName((model.getValueAt(i, 0).toString()));
             personsToSave[i].setSurname((model.getValueAt(i, 1).toString()));
             personsToSave[i].setAge(Integer.parseInt(model.getValueAt(i, 2).toString()));
             personsToSave[i].setPesel(model.getValueAt(i, 3).toString());
-            if(model.getValueAt(i, 4).toString() == "Mężczyzna"){
+            if (model.getValueAt(i, 4).toString() == "Mężczyzna") {
                 personsToSave[i].setSex(SexEnum.MALE);
-            }
-            else {
+            } else {
                 personsToSave[i].setSex(SexEnum.FEMALE);
             }
         }
-        for(Person person : personsToSave){
+        for (Person person : personsToSave) {
             collection.save(person.toDBObject());
             System.out.print(person.getId());
         }
@@ -97,11 +96,11 @@ public class PersonAdminPanel extends BaseAdminPanelImpl {
 
     }
 
-    public void closeDatabaseConnection(){
+    public void closeDatabaseConnection() {
         mongoClient.close();
     }
 
-    public void openDatabaseConnection(){
+    public void openDatabaseConnection() {
         MongoClient mongoClient = null;
         try {
             mongoClient = new MongoClient();
@@ -113,9 +112,9 @@ public class PersonAdminPanel extends BaseAdminPanelImpl {
     }
 
     @Override
-    public void addNew(){
+    public void addNew() {
         boolean ended = false;
-        while(!ended) {
+        while (!ended) {
             ButtonGroup group = new ButtonGroup();
             JTextField nameField = new JTextField(5);
             JTextField surnameField = new JTextField(5);
@@ -153,11 +152,11 @@ public class PersonAdminPanel extends BaseAdminPanelImpl {
             int result = JOptionPane.showConfirmDialog(null, myPanel,
                     "Wpisz dane nowego pacjenta", JOptionPane.OK_CANCEL_OPTION);
 
-            if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.CLOSED_OPTION){
+            if (result == JOptionPane.CANCEL_OPTION || result == JOptionPane.CLOSED_OPTION) {
                 ended = true;
             }
             if (result == JOptionPane.OK_OPTION) {
-                if (MyValidationLibrary.isValidPesel(peselField.getText()) && MyValidationLibrary.isValidAge(ageField.getText())){
+                if (MyValidationLibrary.isValidPesel(peselField.getText()) && MyValidationLibrary.isValidAge(ageField.getText())) {
                     Person person = new Person();
                     person.setName(nameField.getText());
                     person.setSurname(surnameField.getText());
@@ -172,8 +171,7 @@ public class PersonAdminPanel extends BaseAdminPanelImpl {
                     collection.insert(person.toDBObject());
                     refresh();
                     ended = true;
-                }
-                else {
+                } else {
                     JOptionPane.showMessageDialog(null, "PESEL lub wiek niepoprawny");
                 }
             }
@@ -181,38 +179,36 @@ public class PersonAdminPanel extends BaseAdminPanelImpl {
         }
     }
 
-    public void refresh(){
+    public void refresh() {
         fetchPersons();
         updateTable();
     }
 
     @Override
-    public void search(){
+    public void search() {
         Person modelPerson = new Person();
-        if(nameField.getText().length() != 0){
+        if (nameField.getText().length() != 0) {
             modelPerson.setName(nameField.getText());
         }
-        if(surnameField.getText().length() != 0){
+        if (surnameField.getText().length() != 0) {
             modelPerson.setSurname(surnameField.getText());
         }
-        if(ageField.getText().length() != 0 && MyValidationLibrary.isValidAge(ageField.getText())){
+        if (ageField.getText().length() != 0 && MyValidationLibrary.isValidAge(ageField.getText())) {
             modelPerson.setAge(Integer.parseInt(ageField.getText()));
-        }
-        else {
+        } else {
             ageField.setText("");
 
         }
-        if(peselField.getText().length() != 0 && MyValidationLibrary.isValidPesel(peselField.getText())){
+        if (peselField.getText().length() != 0 && MyValidationLibrary.isValidPesel(peselField.getText())) {
             modelPerson.setPesel(peselField.getText());
-        }
-        else {
+        } else {
             peselField.setText("");
         }
 
         persons = new ArrayList<Person>();
         Person person;
         DBCursor foundPersons = collection.find(modelPerson.toDBObject());
-        for(DBObject dbPerson : foundPersons) {
+        for (DBObject dbPerson : foundPersons) {
             person = new Person(dbPerson);
             persons.add(person);
         }

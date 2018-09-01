@@ -11,9 +11,6 @@ public class Application {
     public static void main(String[] args) {
 
 
-
-
-
         PatientAdminPanel app = new PatientAdminPanel();
         final JFrame patientsFrame = new JFrame("App");
         patientsFrame.setContentPane(app.getPanelMain());

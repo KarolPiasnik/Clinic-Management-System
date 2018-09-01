@@ -1,13 +1,13 @@
 package libs;
 
 public final class MyValidationLibrary {
-    public static final boolean isValidPesel(String s){
-        if(s.length() != 11) {
+    public static final boolean isValidPesel(String s) {
+        if (s.length() != 11) {
             return false;
         }
 
-        for(Character c : s.toCharArray()){
-            if(!Character.isDigit(c)){
+        for (Character c : s.toCharArray()) {
+            if (!Character.isDigit(c)) {
                 return false;
             }
         }
@@ -15,16 +15,15 @@ public final class MyValidationLibrary {
         return true;
     }
 
-    public static final boolean isValidAge(String s){
+    public static final boolean isValidAge(String s) {
         int i;
-        try{
+        try {
             i = Integer.parseInt(s);
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
 
-        if(i < 1 || i > 140) {
+        if (i < 1 || i > 140) {
             return false;
         }
 

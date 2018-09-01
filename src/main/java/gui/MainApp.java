@@ -42,13 +42,12 @@ public class MainApp {
 
 
         patientsButton.addActionListener(new ActionListener() {
-            @Override
+
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Dziala jak ma");
             }
         });
     }
-
 
 
 }

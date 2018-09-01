@@ -6,123 +6,82 @@ import enums.ContractTypeEnum;
 import enums.WorkerFunctionEnum;
 import enums.WorkerStatusEnum;
 
-public class Worker {
+public class Worker extends Person {
 
-        String id;
+    private WorkerStatusEnum status;
+    private String name;
+    private String surname;
+    private String pesel;
+    private String job;
+    private WorkerFunctionEnum function;
+    private Double salary;
+    private String scientificTitle;
+    private Integer age;
 
-        public String getId() {
-                return id;
-        }
+    public String getJob() {
+        return job;
+    }
 
-        public void setId(String id) {
-                this.id = id;
-        }
+    public void setJob(String job) {
+        this.job = job;
+    }
 
-        public WorkerStatusEnum getStatus() {
-                return status;
-        }
+    public WorkerFunctionEnum getFunction() {
+        return function;
+    }
 
-        public void setStatus(WorkerStatusEnum status) {
-                this.status = status;
-        }
+    public void setFunction(WorkerFunctionEnum function) {
+        this.function = function;
+    }
 
-        public String getName() {
-                return name;
-        }
+    public Double getSalary() {
+        return salary;
+    }
 
-        public void setName(String name) {
-                this.name = name;
-        }
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
 
-        public String getSurname() {
-                return surname;
-        }
+    public String getScientificTitle() {
+        return scientificTitle;
+    }
 
-        public void setSurname(String surname) {
-                this.surname = surname;
-        }
+    public void setScientificTitle(String scientificTitle) {
+        this.scientificTitle = scientificTitle;
+    }
 
-        public String getPesel() {
-                return pesel;
-        }
+    public Integer getAge() {
+        return age;
+    }
 
-        public void setPesel(String pesel) {
-                this.pesel = pesel;
-        }
-
-        public String getJob() {
-                return job;
-        }
-
-        public void setJob(String job) {
-                this.job = job;
-        }
-
-        public WorkerFunctionEnum getFunction() {
-                return function;
-        }
-
-        public void setFunction(WorkerFunctionEnum function) {
-                this.function = function;
-        }
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
 
-        public Double getSalary() {
-                return salary;
-        }
 
-        public void setSalary(Double salary) {
-                this.salary = salary;
-        }
+    public DBObject toDBObject() {
+        BasicDBObject dbobject = new BasicDBObject();
 
-        public String getScientificTitle() {
-                return scientificTitle;
-        }
+        if (this.getName() != null)
+            dbobject.append("name", this.getName());
+        if (this.getName() != null)
+            dbobject.append("surname", this.getSurname());
+        if (this.getName() != null)
+            dbobject.append("pesel", this.getPesel());
+        if (this.getName() != null)
+            dbobject.append("job", this.getJob());
+        if (this.getName() != null)
+            dbobject.append("salary", this.getSalary());
+        if (this.getName() != null)
+            dbobject.append("title", this.getScientificTitle());
+        if (this.getName() != null)
+            dbobject.append("age", this.getAge());
+        if (this.getName() != null)
+            dbobject.append("function", this.getFunction());
 
-        public void setScientificTitle(String scientificTitle) {
-                this.scientificTitle = scientificTitle;
-        }
+        return dbobject;
 
-        public Integer getAge() {
-                return age;
-        }
-
-        public void setAge(Integer age) {
-                this.age = age;
-        }
-
-        public Integer getRemainigVacation() {
-                return remainigVacation;
-        }
-
-        public void setRemainigVacation(Integer remainigVacation) {
-                this.remainigVacation = remainigVacation;
-        }
-
-        private WorkerStatusEnum status;
-        private String name;
-        private String surname;
-        private String pesel;
-        private String job;
-        private WorkerFunctionEnum function;
-        private Double salary;
-        private String scientificTitle;
-        private Integer age;
-        private Integer remainigVacation;
-
-        public DBObject toDBObject() {
-                return new BasicDBObject("name", this.getName())
-                        .append("surname", this.getSurname())
-                        .append("pesel", this.getPesel())
-                        .append("job", this.getJob())
-                        .append("salary", this.getSalary())
-                        .append("title", this.getScientificTitle())
-                        .append("age", this.getAge())
-                        .append("remainingVacation", this.getRemainigVacation())
-                        .append("status", this.getStatus())
-                        .append("function", this.getFunction())
-                        .append("contractType", this.getRemainigVacation());
-
-        }
+    }
 
 }
